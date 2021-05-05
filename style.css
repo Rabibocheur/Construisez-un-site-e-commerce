@@ -10,8 +10,3 @@ header,
 main {
   background-color: #f3e9f1;
 }
-
-.img-card {
-  object-fit: cover;
-  height: 250px;
-}
