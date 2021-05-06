@@ -12,20 +12,13 @@ async function getItems() {
         <img class="img-responsive" style="height: 250px" src="${response[i].imageUrl}">
         <div class="card-body">
         <p>${response[i].name}</p>
-          <button id="${response[i]._id}" class="btn btn-sm btn-outline-secondary">
-          Plus d'infos
-          </button>
+          <a class="btn btn-sm btn-outline-secondary" href="item.html?id=${response[i]._id}">
+            Plus d'infos
+          </a>
         </div>
       </div>
     </section>
     `;
-  }
-
-  let btn = document.querySelectorAll("button");
-  for (let i = 0; i < btn.length; i++) {
-    btn[i].addEventListener("click", () => {
-      window.location.href = "item.html?id=" + response[i]._id;
-    });
   }
 }
 getItems();

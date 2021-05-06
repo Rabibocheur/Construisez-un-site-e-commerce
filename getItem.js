@@ -3,24 +3,56 @@ async function getItem() {
   const searchParams = new URLSearchParams(getUrl);
   let response = await getProducts(searchParams.get("id"));
   const item = document.getElementById("item");
+
   let colors = "";
   for (let i = 0; i < response.colors.length; i++) {
-    colors += `<div class="" style="background-color: ${response.colors[i]};">f</div>`;
+    colors += `<li class="list-group-item" style="background-color: ${response.colors[i]};">${response.colors[i]}</li>`;
   }
+
   item.innerHTML = `
-  <img class="col-6 img-thumbnail" src="${response.imageUrl}" alt="" />
-  <section class="col-md-6">
-    <div class="card mb-4 shadow-sm">
+  <img class="col-12 col-md-6 col-sm-12 p-0 m-auto m-sm-0 m-md-0 shadow-sm" src="${response.imageUrl}" alt="" />
+  <section class="d-flex flex-column col-md-5 p-0">
+    <div class="card mb-3 shadow-sm">
       <div class="card-body">
-      <h1>${response.name}</h1>
-        <h4>Prix : ${response.price}</h4>
+        <h3>${response.name}</h3>
+        <h5>Prix : ${response.price}</h5>
         <p>${response.description}</p>
-        <div class="d-flex">
-          ${colors}
-        </div>
       </div>
     </div>
+    <ol class="list-group list-group-numbered mb-3">
+      ${colors}
+    </ol>
+    <button class="btn btn-secondary w-100 shadow mt-auto" type="button">Ajouter au panier</button>
   </section>
   `;
+
+  document.querySelector("button").addEventListener("click", () => {
+    let addItem = {
+      id: response._id,
+      nom: response.name,
+      quantite: 1,
+      prix: response.price,
+      total: response.price,
+    };
+
+    let getItems = [];
+    if (!localStorage.getItem("items")) {
+      getItems.push(addItem);
+    } else {
+      getItems = JSON.parse(localStorage.getItem("items"));
+      let exist = 0;
+      for (let i = 0; i < getItems.length; i++) {
+        if (response._id === getItems[i].id) {
+          getItems[i].quantite += 1;
+          getItems[i].total = getItems[i].quantite * getItems[i].prix;
+          exist = 1;
+        }
+      }
+      if (!exist) {
+        getItems.push(addItem);
+      }
+    }
+    localStorage.setItem("items", JSON.stringify(getItems));
+  });
 }
 getItem();

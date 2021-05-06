@@ -7,6 +7,10 @@
 }
 
 header,
-main {
+.form-section {
   background-color: #f3e9f1;
+}
+
+img {
+  object-fit: cover;
 }
