@@ -15,7 +15,7 @@ async function getItem() {
       <div class="card mb-3 shadow-sm">
         <div class="card-body">
           <h3>${response.name}</h3>
-          <h5>Prix : ${response.price}</h5>
+          <h5>Prix : ${response.price / 100} €</h5>
           <p>${response.description}</p>
         </div>
       </div>
@@ -36,17 +36,14 @@ async function getItem() {
       name: response.name,
       color: null,
       quantity: null,
-      price: response.price,
+      price: response.price / 100,
       total: null,
   };
 
   document.querySelector("button").addEventListener("click", () => {
-    let quantity = document.querySelector("input");
-    let color = document.querySelector("select");
-    
-    addItem.quantity = parseInt(quantity.value, 10);
+    addItem.quantity = parseInt(document.querySelector("input").value, 10);
     addItem.total = addItem.quantity * addItem.price;
-    addItem.color = color.value;
+    addItem.color = document.querySelector("select").value;
 
     document.querySelector(".modal-title").innerHTML = `<strong>${addItem.name}</strong> a été ajouté à votre panier !`;
     document.querySelector(".table_order").innerHTML = `

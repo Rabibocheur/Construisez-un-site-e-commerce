@@ -1,25 +1,26 @@
-﻿const tableOrder = document.getElementById("table_order");
-const totalOrder = document.getElementById("total_order"); 
-let getItems = JSON.parse(localStorage.getItem("items"));
+﻿let getItems = JSON.parse(localStorage.getItem("items"));
+
+order();
+total();
 
 const getTotal = () => {
-    return new Promise((r) =>  r(getItems)) 
+    return new Promise((r) => r(getItems)) 
   }
 
-const total = async () => {
+async function total() {
   let response = await getTotal();
   let totaux = 0;
   for (let i in response) {
     totaux += parseInt(response[i].total, 10);
     document.querySelectorAll(".total")[i].textContent = response[i].total + "€";
-    totalOrder.textContent = totaux + "€";
+    document.getElementById("total_order").textContent = totaux + "€";
   }
 }
 
-const order = () => {
+function order() {
   for (let i in getItems) {
   let index = parseInt(i, 10) + 1; 
-  tableOrder.innerHTML += `
+  document.getElementById("table_order").innerHTML += `
   <tr>
     <th scope="row">${index}</th>
     <td>${getItems[i].name}</td>
@@ -49,6 +50,3 @@ document.querySelectorAll("input").forEach(qte => {
     });
   }); 
 }
-
-order();
-total();
