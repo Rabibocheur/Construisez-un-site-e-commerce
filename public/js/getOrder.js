@@ -1,4 +1,4 @@
-const tableOrder = document.getElementById("table_order");
+﻿const tableOrder = document.getElementById("table_order");
 const totalOrder = document.getElementById("total_order"); 
 let getItems = JSON.parse(localStorage.getItem("items"));
 
@@ -41,12 +41,10 @@ document.querySelectorAll("input").forEach(qte => {
     qte.addEventListener("keyup", (e) => {
       if(e.currentTarget.value === "0")
         e.currentTarget.value = "1";
-      
       let id = e.currentTarget.id;
       getItems[id].quantity = e.currentTarget.value;
       getItems[id].total = getItems[id].quantity * getItems[id].price;
       localStorage.setItem("items", JSON.stringify(getItems));
-
       total();
     });
   }); 

@@ -6,7 +6,7 @@ let getProducts = function (url) {
     url = "";
   }
   return new Promise(function (resolve, reject) {
-    fetch("http://localhost:3000/api/teddies/" + url)
+    fetch("https://orinocco-gb-p5.herokuapp.com/api/teddies/" + url)
     .then((response) => {
       if (response.ok) {
         resolve(response.json());
