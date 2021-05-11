@@ -3,7 +3,7 @@
 order();
 total();
 
-const getTotal = () => {
+function getTotal () {
     return new Promise((r) => r(getItems)) 
   }
 
@@ -28,7 +28,7 @@ function order() {
     <td>
       <input type="number" min="1" step="1" value="${
         getItems[i].quantity
-      }" id="${i}" class="form-control w-25">
+      }" id="${i}" class="form-control" style="max-width: 200px">
     </td>
     <td>${getItems[i].price}€</td>
     <td class="total">
