@@ -1,3 +1,5 @@
+getItem();
+
 async function getItem() {
   let getUrl = window.location.search;
   const searchParams = new URLSearchParams(getUrl);
@@ -10,7 +12,9 @@ async function getItem() {
 
   const item = document.getElementById("item");
   item.innerHTML = `
-    <img class="col-12 col-md-6 col-sm-12 p-0 m-auto m-sm-0 m-md-0 shadow-sm" src="${response.imageUrl}" alt="" />
+    <img class="col-12 col-md-6 col-sm-12 p-0 m-auto m-sm-0 m-md-0 shadow-sm" src="${
+      response.imageUrl
+    }" alt="" />
     <section class="d-flex flex-column col-md-5 p-0">
       <div class="card mb-3 shadow-sm">
         <div class="card-body">
@@ -32,12 +36,12 @@ async function getItem() {
   `;
 
   let addItem = {
-      id: response._id,
-      name: response.name,
-      color: null,
-      quantity: null,
-      price: response.price / 100,
-      total: null,
+    id: response._id,
+    name: response.name,
+    color: null,
+    quantity: null,
+    price: response.price / 100,
+    total: null,
   };
 
   document.querySelector("button").addEventListener("click", () => {
@@ -45,7 +49,9 @@ async function getItem() {
     addItem.total = addItem.quantity * addItem.price;
     addItem.color = document.querySelector("select").value;
 
-    document.querySelector(".modal-title").innerHTML = `<strong>${addItem.name}</strong> a été ajouté à votre panier !`;
+    document.querySelector(
+      ".modal-title"
+    ).innerHTML = `<strong>${addItem.name}</strong> a été ajouté à votre panier !`;
     document.querySelector(".table_order").innerHTML = `
       <tr>
         <td>${addItem.name}</td>
@@ -66,6 +72,3 @@ async function getItem() {
     localStorage.setItem("items", JSON.stringify(getItems));
   });
 }
-getItem();
-
-
