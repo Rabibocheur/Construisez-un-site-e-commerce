@@ -1,24 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
-  <link rel="stylesheet" href="public/css/style.css" />
-  <script src="https://kit.fontawesome.com/7a0f0d6266.js" crossorigin="anonymous"></script>
-  <title>Document</title>
-</head>
-
-<body>
-  <header class="row align-items-center justify-content-between mb-5">
-    <img src="public/img/orinoco.png" alt="" class="col-6 col-sm-4 col-md-3 col-lg-2" />
-    <a href="order.html" class="col-1 text-dark"><i class="fas fa-shopping-cart"></i> Panier</a>
-  </header>
-  <main class="row m-3 m-md-4 m-lg-5">
-    <section class="table-section table-responsive p-0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script
+      src="https://kit.fontawesome.com/7a0f0d6266.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="public/css/style.css" />
+    <title>Orinoco</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img src="public/img/orinoco-transparent.png" alt="" width="150"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Articles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="order.html">Panier</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="table-section table-responsive p-0 m-3 m-md-4 m-lg-5">
       <table class="table">
         <thead>
           <tr>
@@ -45,64 +76,107 @@
         </thead>
       </table>
     </section>
-  </main>
-  <section class="form-section p-3 p-md-4 p-lg-5">
-    <form class="row g-3 needs-validation" novalidate>
+
+    <form
+      class="row needs-validation p-3 p-md-4 p-lg-5 g-3 bg-light"
+      novalidate
+    >
       <div class="col-md-4">
-        <label for="validationCustom01" class="form-label">First name</label>
-        <input type="text" class="form-control" id="validationCustom01" value="Mark" required />
-        <div class="valid-feedback">Looks good!</div>
+        <label for="firstName" class="form-label">Prénom</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          value="Mark"
+          required
+        />
+        <div class="invalid-feedback">Renseigner votre prénom</div>
       </div>
       <div class="col-md-4">
-        <label for="validationCustom02" class="form-label">Last name</label>
-        <input type="text" class="form-control" id="validationCustom02" value="Otto" required />
-        <div class="valid-feedback">Looks good!</div>
+        <label for="lastName" class="form-label">Nom</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          value="Otto"
+          required
+        />
+        <div class="invalid-feedback">Renseigner votre nom</div>
       </div>
       <div class="col-md-4">
-        <label for="validationCustomUsername" class="form-label">Username</label>
+        <label for="email" class="form-label">E-mail</label>
         <div class="input-group has-validation">
           <span class="input-group-text" id="inputGroupPrepend">@</span>
-          <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"
-            required />
-          <div class="invalid-feedback">Please choose a username.</div>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            aria-describedby="inputGroupPrepend"
+            required
+          />
+          <div class="invalid-feedback">Cette email est incorrect</div>
         </div>
       </div>
       <div class="col-md-6">
-        <label for="validationCustom03" class="form-label">City</label>
-        <input type="text" class="form-control" id="validationCustom03" required />
-        <div class="invalid-feedback">Please provide a valid city.</div>
+        <label for="adress" class="form-label">Adresse</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationCustom03"
+          required
+        />
+        <div class="invalid-feedback">Renseigner une adresse valide</div>
       </div>
-      <div class="col-md-3">
-        <label for="validationCustom04" class="form-label">State</label>
-        <select class="form-select" id="validationCustom04" required>
-          <option selected disabled value="">Choose...</option>
-          <option>...</option>
-        </select>
-        <div class="invalid-feedback">Please select a valid state.</div>
+      <div class="col-md-4">
+        <label for="validationCustom03" class="form-label">Ville</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationCustom03"
+          required
+        />
+        <div class="invalid-feedback">Renseigner votre ville</div>
       </div>
-      <div class="col-md-3">
-        <label for="validationCustom05" class="form-label">Zip</label>
-        <input type="text" class="form-control" id="validationCustom05" required />
-        <div class="invalid-feedback">Please provide a valid zip.</div>
+      <div class="col-md-2">
+        <label for="validationCustom05" class="form-label">Code postale</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationCustom05"
+          required
+        />
+        <div class="invalid-feedback">Renseigner votre code postale</div>
       </div>
-      <div class="col-12">
+      <div class="col-9">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required />
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="invalidCheck"
+            required
+          />
           <label class="form-check-label" for="invalidCheck">
             Agree to terms and conditions
           </label>
           <div class="invalid-feedback">
-            You must agree before submitting.
+            Merci de bien vouloir lire et accepter les conditions
           </div>
         </div>
       </div>
       <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit">Commander</button>
       </div>
     </form>
-  </section>
-  <script src="public/js/getProducts.js"></script>
-  <script src="public/js/getOrder.js"></script>
-</body>
 
+    <script src="public/js/getProducts.js"></script>
+    <script src="public/js/getOrder.js"></script>
+    <script src="public/js/validateOrder.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

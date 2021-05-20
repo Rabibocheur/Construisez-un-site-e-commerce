@@ -1,13 +1,18 @@
-const getUrl = window.location.search;
-const searchParams = new URLSearchParams(getUrl);
-
-getItem();
-
-// Création de la page d'un article
-async function getItem() {
+(async () => {
+  const getUrl = window.location.search;
+  const searchParams = new URLSearchParams(getUrl);
   const product = await getProducts(searchParams.get("id"));
+  getItem(product);
+  document
+    .querySelector("button[data-bs-toggle='modal']")
+    .addEventListener("click", () => createMyItem(product));
+})();
+
+// get an item
+function getItem(product) {
   let colors = "";
-  for (let i in product.colors) colors += `<option>${product.colors[i]}</option>`;
+  for (let i in product.colors)
+    colors += `<option>${product.colors[i]}</option>`;
 
   document.getElementById("item").innerHTML = `
     <img class="col-12 col-md-6 col-sm-12 p-0 m-auto m-sm-0 m-md-0 shadow-sm" src="${
@@ -32,18 +37,14 @@ async function getItem() {
       </button>
     </section>
   `;
-
-  document.querySelector("button").addEventListener("click", addToStorage);
 }
 
-// Ajout et création d'un article dans le localStorage
-async function addToStorage () {
-  const product = await getProducts(searchParams.get("id"));
+// Creating an article object
+function createMyItem(product) {
   const quantity = parseInt(document.querySelector("input").value, 10);
-  const price = product.price / 100;
-  let getItems = [];
+  const price = product.price;
 
-  let addItem = {
+  let myItem = {
     id: product._id,
     name: product.name,
     color: document.querySelector("select").value,
@@ -51,6 +52,13 @@ async function addToStorage () {
     price: price,
     total: quantity * price,
   };
+
+  addToStorage(myItem);
+}
+
+// Add an item to local storage
+function addToStorage(addItem) {
+  let getItems = [];
 
   if (!localStorage.getItem("items")) {
     getItems.push(addItem);
@@ -60,16 +68,21 @@ async function addToStorage () {
   }
   localStorage.setItem("items", JSON.stringify(getItems));
 
+  basketMessage(addItem);
+}
+
+// message for adding an item to the cart
+function basketMessage(item) {
   document.querySelector(".modal-title").innerHTML = `
-    <strong>${addItem.name}</strong> a été ajouté à votre panier !
+    <strong>${item.name}</strong> a été ajouté à votre panier !
   `;
   document.querySelector(".table_order").innerHTML = `
     <tr>
-      <td>${addItem.name}</td>
-      <td>${addItem.color}</td>
-      <td>${addItem.quantity}</td>
-      <td>${addItem.price}€</td>
-      <td>${addItem.total}€</td>
+      <td>${item.name}</td>
+      <td>${item.color}</td>
+      <td>${item.quantity}</td>
+      <td>${item.price / 100}€</td>
+      <td>${item.total / 100}€</td>
     </tr>
   `;
 }

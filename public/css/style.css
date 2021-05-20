@@ -6,26 +6,12 @@
   padding: 0;
 }
 
-header,
-.form-section {
-  background-color: #f3e9f1;
-}
-
-header a{
-  font-size: 20px;
-  text-decoration: none;
-}
-
 img {
   object-fit: cover;
 }
-
-.delete-item{
+.delete-item {
   cursor: pointer;
 }
-.delete-item:hover{
-color: red;
-}
-.nav-link{
-  font-size: 18px;
+.delete-item:hover {
+  color: red;
 }
