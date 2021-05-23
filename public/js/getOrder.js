@@ -16,12 +16,14 @@ function getOrder(products) {
   }
 }
 
-function showBasket(products) {
+async function showBasket(products) {
   document.getElementById("table_order").innerHTML = "";
   for (let i = 0; i < products.length; i++) {
+    let response = await getProducts(products[i].id);
     document.getElementById("table_order").innerHTML += `
       <tr>
         <th scope="row">${i + 1}</th>
+        <td><img src="${response.imageUrl}" width="70"/></td>
         <td>${products[i].name}</td>
         <td>${products[i].color}</td>
         <td class="col-3">
