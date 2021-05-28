@@ -19,7 +19,7 @@ function getOrder(products) {
 async function showBasket(products) {
   document.getElementById("table_order").innerHTML = "";
   for (let i = 0; i < products.length; i++) {
-    let response = await getProducts(products[i].id);
+    let response = await getAPI(products[i].id);
     document.getElementById("table_order").innerHTML += `
       <tr>
         <th scope="row">${i + 1}</th>

@@ -1,7 +1,7 @@
 (async () => {
   const getUrl = window.location.search;
   const searchParams = new URLSearchParams(getUrl);
-  const product = await getProducts(searchParams.get("id"));
+  const product = await getAPI(searchParams.get("id"));
   getItem(product);
   document
     .querySelector("button[data-bs-toggle='modal']")

@@ -3,7 +3,7 @@ getItems();
  * Affichage des produits
  */
 async function getItems() {
-  const products = await getProducts();
+  const products = await getAPI();
   for (const product of products) {
     document.getElementById("items").innerHTML += `
     <section class="col-md-4 col-sm-6">
