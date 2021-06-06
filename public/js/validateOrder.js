@@ -57,7 +57,7 @@ function formValidation(input) {
   return validInput;
 }
 
-const inputValidation = (inputName, regexp) => {
+function inputValidation (inputName, regexp) {
   let isValid = false;
 
   if (inputName.name == "terms") {
@@ -69,11 +69,11 @@ const inputValidation = (inputName, regexp) => {
   return isValid;
 };
 
-async function orderValidation() {
-  const product = JSON.parse(localStorage.getItem("items"));
+function orderValidation(){
+  const products = JSON.parse(localStorage.getItem("items"));
 
-  if (product != null) {
-    const products = Object.values(product).map((product) => {
+  if (products != null) {
+    const product_id = products.map((product) => {
       return product.id;
     });
 
@@ -85,34 +85,34 @@ async function orderValidation() {
         city: form.city.value,
         email: form.email.value,
       },
-      products: products,
+      products: product_id,
     };
 
-    const init = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(order),
-    };
+    postOrder(order);
 
-    await getAPI("order", init)
-      .then((response) => {
-        localStorage.removeItem("items");
-        window.location.href = `${window.location.origin}/validation.html?orderId=${response.orderId}`;
-      })
-      .catch(() => {
-        alert(error);
-      });
   } else {
     document.querySelector(".toast").classList.add("show");
-
     document
       .querySelector(".btn-close[data-bs-dismiss='toast']")
       .addEventListener("click", function () {
         document.querySelector(".toast").classList.remove("show");
       });
-
-    setTimeout(function () {
-      document.querySelector(".toast").classList.remove("show");
-    }, 5000);
   }
+}
+
+async function postOrder(order) {
+  const init = {
+    method: "POST",
+    headers: { "Content-Type" : "application/json" },
+    body: JSON.stringify(order),
+  };
+
+  await getAPI("order", init)
+    .then((response) => {
+      localStorage.removeItem("items");
+      window.location.href = `${window.location.origin}/validation.html?orderId=${response.orderId}`;
+    })
+    .catch(() => {
+      alert(error);
+    });
 }

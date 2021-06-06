@@ -52,30 +52,6 @@ function refreshTotal(products) {
   document.getElementById("total_order").textContent = total + "€";
 }
 
-// Groupe d'évènement
-function eventOrder(products) {
-  for (let i = 0; i < products.length; i++) {
-    document
-      .querySelectorAll(".quantity-item")
-      [i].addEventListener("change", (event) => setQuantity(event, products));
-    document
-      .querySelectorAll(".delete-item")
-      [i].addEventListener("click", (event) => deleteItem(event, products));
-  }
-  // document
-  //   .querySelectorAll(".quantity-item")
-  //   .forEach((quantity) =>
-  //     quantity.addEventListener("change", (event) =>
-  //       setQuantity(event, products)
-  //     )
-  //   );
-  // document
-  //   .querySelectorAll(".delete-item")
-  //   .forEach((remove) =>
-  //     remove.addEventListener("click", (event) => deleteItem(event, products))
-  //   );
-}
-
 // update quantity
 function setQuantity(event, products) {
   const id = event.currentTarget.dataset.indexProduct;
@@ -93,4 +69,16 @@ function deleteItem(event, products) {
   products.splice(event.currentTarget.dataset.indexProduct, 1);
   localStorage.setItem("items", JSON.stringify(products));
   getOrder(products);
+}
+
+// Groupe d'évènement
+function eventOrder(products) {
+  for (let i = 0; i < products.length; i++) {
+    document
+      .querySelectorAll(".quantity-item")
+      [i].addEventListener("change", (event) => setQuantity(event, products));
+    document
+      .querySelectorAll(".delete-item")
+      [i].addEventListener("click", (event) => deleteItem(event, products));
+  }
 }
