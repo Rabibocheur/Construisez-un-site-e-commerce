@@ -57,7 +57,7 @@ function formValidation(input) {
   return validInput;
 }
 
-function inputValidation (inputName, regexp) {
+function inputValidation(inputName, regexp) {
   let isValid = false;
 
   if (inputName.name == "terms") {
@@ -67,9 +67,9 @@ function inputValidation (inputName, regexp) {
   }
 
   return isValid;
-};
+}
 
-function orderValidation(){
+function orderValidation() {
   const products = JSON.parse(localStorage.getItem("items"));
 
   if (products != null) {
@@ -89,7 +89,6 @@ function orderValidation(){
     };
 
     postOrder(order);
-
   } else {
     document.querySelector(".toast").classList.add("show");
     document
@@ -103,7 +102,7 @@ function orderValidation(){
 async function postOrder(order) {
   const init = {
     method: "POST",
-    headers: { "Content-Type" : "application/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(order),
   };
 

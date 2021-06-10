@@ -21,8 +21,10 @@ function getItem(product) {
     <section class="d-flex flex-column col-md-5 p-0">
       <div class="card mb-3 shadow-sm">
         <div class="card-body">
-          <h3>${product.name}</h3>
-          <h5>Prix : ${product.price / 100} €</h5>
+          <div class="d-flex justify-content-between">
+            <h3>${product.name}</h3>
+            <h5>Prix : ${product.price / 100} €</h5>
+          </div>
           <p>${product.description}</p>
         </div>
       </div>

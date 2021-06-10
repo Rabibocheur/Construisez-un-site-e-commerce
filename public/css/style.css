@@ -5,20 +5,30 @@
   margin: 0;
   padding: 0;
 }
-.navbar{
+.navbar {
   background-color: #ececec;
 }
-.nav-link{
+.nav-link {
   border-bottom: 1px solid transparent;
 }
-.nav-link:hover{
+.nav-link:hover {
   border-color: #999999;
 }
-.nav-link.active{
-   border-color: #999999;
+.nav-link.active {
+  border-color: #999999;
+}
+.items-card a {
+  text-decoration: none;
+  color: black;
+}
+.items-card a:hover {
+  box-shadow: 0px 0px 2px black;
 }
 img {
   object-fit: cover;
+}
+.shopping {
+  font-size: 20px;
 }
 .delete-item {
   cursor: pointer;
@@ -26,6 +36,6 @@ img {
 .delete-item:hover {
   color: red;
 }
-.needs-validation{
-  background-color: #ECECEC;
+.needs-validation {
+  background-color: #ececec;
 }
