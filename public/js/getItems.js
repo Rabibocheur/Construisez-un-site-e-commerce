@@ -1,6 +1,6 @@
 getItems();
 /*
- * Affichage des produits
+ * Product display
  */
 async function getItems() {
   const products = await getAPI();
@@ -10,7 +10,7 @@ async function getItems() {
       <a class="card mb-4" href="item.html?id=${product._id}">
         <img class="img-responsive" style="height: 250px" src="${
           product.imageUrl
-        }">
+        }" alt="ours ${product.name}">
         <div class="card-body d-flex justify-content-between">
         <h5>${product.name}</h5>
         <h5>${product.price / 100} €</h5>

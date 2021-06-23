@@ -12,7 +12,7 @@ const form = document.querySelector(".needs-validation");
     e.preventDefault();
     for (let input of inputs) {
       if (formValidation(input) == false) {
-        throw "validation false";
+        throw "validation invalid";
       }
     }
     orderValidation();
@@ -72,7 +72,7 @@ function inputValidation(inputName, regexp) {
 function orderValidation() {
   const products = JSON.parse(localStorage.getItem("items"));
 
-  if (products != null) {
+  if (products != null && products.length > 0) {
     const product_id = products.map((product) => {
       return product.id;
     });

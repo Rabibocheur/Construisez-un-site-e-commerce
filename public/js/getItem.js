@@ -17,7 +17,7 @@ function getItem(product) {
   document.getElementById("item").innerHTML = `
     <img class="col-12 col-md-6 col-sm-12 p-0 m-auto m-sm-0 m-md-0 shadow-sm" src="${
       product.imageUrl
-    }" alt="" />
+    }" alt="ours ${product.name}" />
     <section class="d-flex flex-column col-md-5 p-0">
       <div class="card mb-3 shadow-sm">
         <div class="card-body">

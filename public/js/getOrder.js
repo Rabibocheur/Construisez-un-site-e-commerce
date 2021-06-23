@@ -3,7 +3,7 @@
   getOrder(products);
 })();
 
-// Création du panier
+// Basket creation
 function getOrder(products) {
   if (products === null || products.length === 0) {
     document.querySelector(".table").innerHTML = `
@@ -16,6 +16,7 @@ function getOrder(products) {
   }
 }
 
+// posting an article
 async function showBasket(products) {
   document.getElementById("table_order").innerHTML = "";
   for (let i = 0; i < products.length; i++) {
@@ -45,7 +46,7 @@ async function showBasket(products) {
   eventOrder(products);
 }
 
-// Calcul du prix total
+// Calculation of the total price
 function refreshTotal(products) {
   let total = 0;
   for (let i in products) total += parseInt(products[i].total, 10) / 100;
@@ -71,7 +72,7 @@ function deleteItem(event, products) {
   getOrder(products);
 }
 
-// Groupe d'évènement
+// Event group
 function eventOrder(products) {
   for (let i = 0; i < products.length; i++) {
     document

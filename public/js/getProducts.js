@@ -1,5 +1,5 @@
 /*
- * Récupération des informations de l'API
+ * Retrieving information from the API
  */
 function getAPI(url = "", init) {
   const hostname =
