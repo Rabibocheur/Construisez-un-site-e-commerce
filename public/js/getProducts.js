@@ -5,7 +5,7 @@ function getAPI(url = "", init) {
   const hostname =
     location.hostname === "127.0.0.1" || location.hostname === "localhost"
       ? "http://localhost:3000"
-      : "https://orinocco-gb-p5.herokuapp.com";
+      : "https://likeable-morning-cornet.glitch.me/";
 
   if (init == undefined) init = { method: "GET" };
 
@@ -15,18 +15,11 @@ function getAPI(url = "", init) {
         if (response.ok) {
           resolve(response.json());
         } else {
-          console.error(
-            "Problème de connexion : ",
-            response.status,
-            response.statusText
-          );
+          console.error("Problème de connexion : ", response.status, response.statusText);
         }
       })
       .catch((error) => {
-        console.error(
-          "Il y a eu un problème avec l'opération fetch: ",
-          error.message
-        );
+        console.error("Il y a eu un problème avec l'opération fetch: ", error.message);
       });
   });
 }

@@ -1,7 +1,34 @@
-const http = require('http');
-const app = require('./app');
+const express = require("express");
+const app = express();
+const server = require("http").createServer(app);
 
-const normalizePort = val => {
+const path = require("path");
+
+const cameraRoutes = require("./routes/camera");
+const teddyRoutes = require("./routes/teddy");
+const furnitureRoutes = require("./routes/furniture");
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+  next();
+});
+
+app.use("/images", express.static(path.join(__dirname, "images")));
+app.use(express.static("images"));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use("/api/cameras", cameraRoutes);
+app.use("/api/teddies", teddyRoutes);
+app.use("/api/furniture", furnitureRoutes);
+
+const normalizePort = (val) => {
   const port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -12,34 +39,9 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
 
-const errorHandler = error => {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-  const address = server.address();
-  const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges.');
-      process.exit(1);
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use.');
-      process.exit(1);
-    default:
-      throw error;
-  }
-};
+const port = normalizePort(process.env.PORT || "3000");
 
-const server = http.createServer(app);
-
-server.on('error', errorHandler);
-server.on('listening', () => {
-  const address = server.address();
-  const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
-  console.log('Listening on ' + bind);
+server.listen(port, () => {
+  console.log("Listening on " + port);
 });
-
-server.listen(port);
